@@ -20,7 +20,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html{
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -53,4 +55,11 @@ ul {
 a {
   text-decoration: none;
   color: unset;
+}
+
+img{
+  width:100%
+}
+section{
+  padding: 60px 0px;
 }
