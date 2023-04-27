@@ -1,33 +1,46 @@
 import React from 'react'
 import './Header.css'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import logo from '../../assets/images/eco-logo.png'
+import user__icon from '../../assets/images/user-icon.png'
+import { NavLink } from 'react-router-dom'
+import { Container,Row } from 'reactstrap' 
 export default function Header() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <Container>
+    <Row>
+      <div className='nav-wrapper'>
+        <div className="logo">
+          <img src={logo} alt='logo'/>
+          <div>
+            <h1>MultiMart</h1>
+            <p>since 1995</p>
+          </div>
+        </div>
+        <div className="navigation">
+          <ul className="menu">
+            <li className="nav__item">
+              <NavLink to={'/'} >Home</NavLink>
+            </li>
+            <li className="nav__item">
+              <NavLink to={'/shope'} >Shope</NavLink>
+            </li>
+            <li className="nav__item">
+              <NavLink to={'/cart'} >Cart</NavLink>
+            </li>
+          </ul>
+        </div>
+        <div className="nav__icons">
+          <span className='fav__icon'>
+            <i className="ri-home-heart-line"></i>
+          </span>
+          <span className="cart__icon">
+          <i className="ri-shopping-bag-line"></i>
+          </span>
+          <span><img src={user__icon} alt=''/></span>
+        </div>
+      </div>
+    </Row>
+  </Container>
+>>>>>>> 169d6709719822d13c2a07dd9d4b272e5b229711
   )
 }
