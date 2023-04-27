@@ -41,6 +41,5 @@ export default function Header() {
       </div>
     </Row>
   </Container>
->>>>>>> 169d6709719822d13c2a07dd9d4b272e5b229711
   )
 }
