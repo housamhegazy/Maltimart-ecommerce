@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState,useEffect} from 'react'
 import Helmet from 'Components/helmet/Helmet'
 import { Container,Row,Col } from 'reactstrap'
 import HeroImage from '../assets/images/hero-img.png'
@@ -6,8 +6,17 @@ import '../styles/home.css'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ServicesComp from '../services/Servicess'
-
+import ProductList from 'Components/Ul/ProductList'
+import products from 'assets/data/products'
 export default function Home() {
+const [trendingProducts,settrendingProducts] = useState([])
+const [bestSalesProducts,setbestSalesProducts] = useState([])
+useEffect(()=>{
+  const filteredtrendingProducts = products.filter((item)=>{return item.category === "chair"});
+  const filteredbestSalesProducts = products.filter((item)=>{return item.category === "sofa"});
+  settrendingProducts(filteredtrendingProducts)
+  setbestSalesProducts(filteredbestSalesProducts)
+},[])
   const Year = new Date().getFullYear()
   return (
     <Helmet title={"Home"}>
@@ -41,6 +50,17 @@ export default function Home() {
             <Col lg='12' className='text-center'>
               <h2 className='section__title'>Trending Products</h2>
             </Col>
+            <ProductList data={trendingProducts}/>
+          </Row>
+        </Container>
+      </section>
+      <section className="best__sales">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center'>
+              <h2>Best Sales</h2>
+            </Col>
+            <ProductList data={bestSalesProducts}/>
           </Row>
         </Container>
       </section>
