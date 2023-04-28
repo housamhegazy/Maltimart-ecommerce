@@ -13,11 +13,14 @@ import Clock from 'Components/Ul/Clock'
 export default function Home() {
 const [trendingProducts,settrendingProducts] = useState([])
 const [bestSalesProducts,setbestSalesProducts] = useState([])
+const [mobileproducts,setmobileproducts] = useState([])
 useEffect(()=>{
   const filteredtrendingProducts = products.filter((item)=>{return item.category === "chair"});
   const filteredbestSalesProducts = products.filter((item)=>{return item.category === "sofa"});
+  const filteredmobileproducts = products.filter((item)=>{return item.category === "mobile"});
   settrendingProducts(filteredtrendingProducts)
   setbestSalesProducts(filteredbestSalesProducts)
+  setmobileproducts(filteredmobileproducts)
 },[])
   const Year = new Date().getFullYear()
   return (
@@ -82,6 +85,16 @@ useEffect(()=>{
             <Col lg='6' md='6' className='text-end'>
               <img src={counterImg} alt='counterimg'/>
             </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className="new-arrivals">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center'>
+                <h2>New Arrivals</h2>
+            </Col>
+            <ProductList data={mobileproducts}/>
           </Row>
         </Container>
       </section>
