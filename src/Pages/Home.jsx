@@ -8,6 +8,8 @@ import { motion } from 'framer-motion'
 import ServicesComp from '../services/Servicess'
 import ProductList from 'Components/Ul/ProductList'
 import products from 'assets/data/products'
+import counterImg from '../assets/images/counter-timer-img.png'
+import Clock from 'Components/Ul/Clock'
 export default function Home() {
 const [trendingProducts,settrendingProducts] = useState([])
 const [bestSalesProducts,setbestSalesProducts] = useState([])
@@ -61,6 +63,25 @@ useEffect(()=>{
               <h2>Best Sales</h2>
             </Col>
             <ProductList data={bestSalesProducts}/>
+          </Row>
+        </Container>
+      </section>
+      <section className="timer-count">
+        <Container>
+          <Row>
+            <Col lg='6' md='6'>
+              <div className="clock__top-content ">
+                <h4 className='text-white fs-6 mb-2'>Limited offer</h4>
+                <h3 className='text-white fs-5 mb-3'>Quality Armchair</h3>
+              </div>
+              <motion.button whileTap={{scale:1.1}} className="buy__btn store__btn">
+                <Link to={'/shope'}>Visit Store</Link>
+              </motion.button>
+              <Clock/>
+            </Col>
+            <Col lg='6' md='6' className='text-end'>
+              <img src={counterImg} alt='counterimg'/>
+            </Col>
           </Row>
         </Container>
       </section>
