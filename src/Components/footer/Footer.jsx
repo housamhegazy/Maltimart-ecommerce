@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom'
 import logo from "../../assets/images/eco-logo.png";
 
 export default function Footer() {
+  const year = new Date().getFullYear()
   return (
     <footer className="footer">
       <Container>
         <Row>
           <Col lg='4'>
             <div className="logo">
-              <img src={logo} alt="logo" />
               <div>
-                <h1>MultiMart</h1>
+                <h1 className='text-white'>MultiMart</h1>
               </div>
             </div>
             <p className="footer-text">
@@ -59,23 +59,28 @@ export default function Footer() {
               </div>
           </Col>
           <Col lg='3'>
-            <div className="footer-quick-links">
-                  <h4 className="quick-links-title">Contact</h4>
+            <div className="footer-contact">
+                  <h4 className="footer-contact-title">Contact</h4>
                   <ListGroup>
-                    <ListGroupItem className='ps-0 border-0'>
+                    <ListGroupItem className='ps-0 border-0 d-flex align-items-center gap-2'>
                       <span><i className="ri-map-pin-line"></i></span>
+                      <p>1323 Jazan,Saudi Arabia</p>
                     </ListGroupItem>
-                    <ListGroupItem className='ps-0 border-0'>
-                      <Link to={'/cart'}>Cart</Link>
+                    <ListGroupItem className='ps-0 border-0 d-flex align-items-center gap-2'>
+                      <span><i className="ri-phone-fill"></i></span>
+                      <p>+966558412127</p>
                     </ListGroupItem>
-                    <ListGroupItem className='ps-0 border-0'>
-                      <Link to={'/login'}>log in</Link>
-                    </ListGroupItem>
-                    <ListGroupItem className='ps-0 border-0'>
-                      <Link to={'#'}>privacy policy</Link>
+                    <ListGroupItem className='ps-0 border-0 d-flex align-items-center gap-2'>
+                      <span><i className="ri-mail-line"></i></span>
+                      <p>geohousamd@gmail.com</p>
                     </ListGroupItem>
                   </ListGroup>
                 </div>
+          </Col>
+          <Col lg='12'>
+            <p className="footer-copyright">
+              Copyright {year} developed by Housam Hegazy, All Rights Reserved.
+            </p>
           </Col>
         </Row>
       </Container>

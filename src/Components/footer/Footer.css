@@ -1,0 +1,31 @@
+.footer{
+    padding-top: 60px;
+    padding-bottom: 30px;
+    background: var(--primary-color);
+}
+.footer-text{
+    line-height: 30px;
+    color:rgb(255,255,255,0.735);
+}
+
+.footer-quick-links ul li,.footer-contact ul li{
+    background: transparent!important
+}
+.footer-quick-links ul li a,.footer-contact i,.footer-contact ul li p{
+    color:rgb(255,255,255,0.735);
+}
+.quick-links-title,.footer-contact-title{
+    margin-bottom: 30px;
+    color:#fff;
+    font-size: 1.1rem;
+}
+.footer-contact li span{
+    font-size: 1.2rem;
+}
+
+.footer-copyright{
+    color:rgb(255,255,255,0.735);
+    margin: 50px;
+    font-style: 0.9rem;
+    text-align: center;
+}

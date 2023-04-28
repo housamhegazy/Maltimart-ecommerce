@@ -63,3 +63,8 @@ img{
 section{
   padding: 60px 0px;
 }
+@media (max-width:768px){
+  section{
+    padding: 40px 0;
+  }
+}

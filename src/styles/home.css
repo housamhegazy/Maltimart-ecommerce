@@ -55,3 +55,39 @@
 .store__btn a:hover{
     color: inherit;
 }
+
+@media (max-width:992px){
+    .hero__content h2{
+        font-size: 2rem;
+    }
+    .section__title{
+        font-size: 1.7rem;
+    }
+    .clock__top-content{
+        text-align: center;
+    }
+    .counter__img{
+        display: none;
+    }
+}
+@media (max-width:768px){
+    .hero__content h2{
+        font-size: 1.5rem;
+    }
+    .hero__content p{
+        font-size: .9rem;
+    }
+    .buy__btn{
+        font-size: .9rem;
+    }
+    .section__title{
+        font-size: 1.4rem;
+    }
+    
+}
+@media (max-width:576px){
+    .hero__content{
+        padding-top: 0;
+        margin-bottom: 40px;
+    }
+}

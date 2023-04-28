@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./Header.css";
 import logo from "../../assets/images/eco-logo.png";
 import user__icon from "../../assets/images/user-icon.png";
@@ -20,8 +20,26 @@ const navLinks = [
   },
 ];
 export default function Header() {
+  const headerRef = useRef(null);
+  const menuRef = useRef(null);
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        headerRef.current.classList.add("stcky-header");
+      } else {
+        headerRef.current.classList.remove("stcky-header");
+      }
+    });
+  };
+  const menuToggleFunc = () => menuRef.current.classList.toggle("active-menu");
+  useEffect(() => {
+    stickyHeaderFunc();
+    return window.removeEventListener("scroll", stickyHeaderFunc);
+  }, []);
+ 
   return (
-    <div className="header">
+    <div className="header" ref={headerRef} >
       <Container>
         <Row>
           <div className="nav-wrapper">
@@ -32,7 +50,7 @@ export default function Header() {
                 <p>since 1995</p>
               </div>
             </div>
-            <div className="navigation">
+            <div className="navigation" ref={menuRef} onClick={menuToggleFunc}>
               <ul className="menu">
                 {navLinks.map((item, index) => {
                   return (
@@ -45,7 +63,7 @@ export default function Header() {
             </div>
             <div className="nav__icons">
               <span className="fav__icon">
-              <i className="ri-heart-3-fill"></i>
+                <i className="ri-heart-3-fill"></i>
                 <span className="badge">1</span>
               </span>
               <span className="cart__icon">
@@ -53,13 +71,17 @@ export default function Header() {
                 <span className="badge">1</span>
               </span>
               <span>
-                <motion.img whileTap={{scale:1.1}} src={user__icon} alt="" />
+                <motion.img
+                  whileTap={{ scale: 1.1 }}
+                  src={user__icon}
+                  alt="user-icon"
+                />
               </span>
-            </div>
-            <div className="mobile__menu">
-              <span>
-                <i className="ri-menu-line"></i>
-              </span>
+              <div className="mobile__menu" >
+                <span onClick={menuToggleFunc}>
+                  <i className="ri-menu-line"></i>
+                </span>
+              </div>
             </div>
           </div>
         </Row>

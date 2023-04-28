@@ -88,7 +88,7 @@ useEffect(()=>{
               </motion.button>
               <Clock/>
             </Col>
-            <Col lg='6' md='6' className='text-end'>
+            <Col lg='6' md='12' className='text-end counter__img'>
               <img src={counterImg} alt='counterimg'/>
             </Col>
           </Row>

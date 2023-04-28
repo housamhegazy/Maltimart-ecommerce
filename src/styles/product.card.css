@@ -25,3 +25,18 @@
 .product__info a:hover{
     color:inherit
 }
+
+@media (max-width:992px){
+    .product__info h3 a{
+        font-size: 1.1rem;
+    }
+   
+}
+@media (max-width:768px){
+    .product__info h3 a{
+        font-size: 1rem;
+    }
+    .product__card__btn span i{
+        font-size: 1rem;
+    }
+}

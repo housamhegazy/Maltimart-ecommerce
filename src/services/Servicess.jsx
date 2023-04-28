@@ -11,12 +11,14 @@ export default function ServicesComp() {
           {serviceData.map((item,index) => {
             return (
               <Col key={index} lg="3" md="4">
-                <motion.div whileHover={{scale:1.1}} className="service__item" style={{background:item.bg}}>
+                <motion.div whileHover={{scale:1.1}} className="service__item d-flex align-items-center" style={{background:item.bg}}>
                   <span>
                     <i className={item.icon}></i>
                   </span>
-                  <h3>{item.title}</h3>
-                  <p>{item.subtitle }</p>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.subtitle }</p>
+                  </div>
                 </motion.div>
               </Col>
             );
