@@ -14,13 +14,16 @@ export default function Home() {
 const [trendingProducts,settrendingProducts] = useState([])
 const [bestSalesProducts,setbestSalesProducts] = useState([])
 const [mobileproducts,setmobileproducts] = useState([])
+const [wirelessProducts,setwirelessProducts] = useState([])
 useEffect(()=>{
   const filteredtrendingProducts = products.filter((item)=>{return item.category === "chair"});
   const filteredbestSalesProducts = products.filter((item)=>{return item.category === "sofa"});
   const filteredmobileproducts = products.filter((item)=>{return item.category === "mobile"});
+  const filteredwirelessProducts = products.filter((item)=>{return item.category === "wireless"});
   settrendingProducts(filteredtrendingProducts)
   setbestSalesProducts(filteredbestSalesProducts)
   setmobileproducts(filteredmobileproducts)
+  setwirelessProducts(filteredwirelessProducts)
 },[])
   const Year = new Date().getFullYear()
   return (
@@ -95,6 +98,7 @@ useEffect(()=>{
                 <h2>New Arrivals</h2>
             </Col>
             <ProductList data={mobileproducts}/>
+            <ProductList data={wirelessProducts}/>
           </Row>
         </Container>
       </section>
