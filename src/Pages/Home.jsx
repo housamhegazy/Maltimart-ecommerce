@@ -15,15 +15,18 @@ const [trendingProducts,settrendingProducts] = useState([])
 const [bestSalesProducts,setbestSalesProducts] = useState([])
 const [mobileproducts,setmobileproducts] = useState([])
 const [wirelessProducts,setwirelessProducts] = useState([])
+const [popularProducts,setpopularProducts] = useState([])
 useEffect(()=>{
   const filteredtrendingProducts = products.filter((item)=>{return item.category === "chair"});
   const filteredbestSalesProducts = products.filter((item)=>{return item.category === "sofa"});
   const filteredmobileproducts = products.filter((item)=>{return item.category === "mobile"});
   const filteredwirelessProducts = products.filter((item)=>{return item.category === "wireless"});
+  const filteredpopularProducts = products.filter((item)=>{return item.category === "watch"});
   settrendingProducts(filteredtrendingProducts)
   setbestSalesProducts(filteredbestSalesProducts)
   setmobileproducts(filteredmobileproducts)
   setwirelessProducts(filteredwirelessProducts)
+  setpopularProducts(filteredpopularProducts)
 },[])
   const Year = new Date().getFullYear()
   return (
@@ -94,11 +97,21 @@ useEffect(()=>{
       <section className="new-arrivals">
         <Container>
           <Row>
-            <Col lg='12' className='text-center'>
+            <Col lg='12' className='text-center mb-5'>
                 <h2>New Arrivals</h2>
             </Col>
             <ProductList data={mobileproducts}/>
             <ProductList data={wirelessProducts}/>
+          </Row>
+        </Container>
+      </section>
+      <section className="popular-category">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center mb-5'>
+                <h2>Popular In Category</h2>
+            </Col>
+            <ProductList data={popularProducts}/>
           </Row>
         </Container>
       </section>
