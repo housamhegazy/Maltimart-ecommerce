@@ -63,7 +63,7 @@ export default function Footer() {
                   <h4 className="quick-links-title">Contact</h4>
                   <ListGroup>
                     <ListGroupItem className='ps-0 border-0'>
-                      <Link to={'/shope'}>shope</Link>
+                      <span><i className="ri-map-pin-line"></i></span>
                     </ListGroupItem>
                     <ListGroupItem className='ps-0 border-0'>
                       <Link to={'/cart'}>Cart</Link>
