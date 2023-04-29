@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="footer">
       <Container>
         <Row>
-          <Col lg='4'>
+          <Col lg='3' md='4' className='mb-4'>
             <div className="logo">
               <div>
                 <h1 className='text-white'>MultiMart</h1>
@@ -20,7 +20,7 @@ export default function Footer() {
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero a nemo iure ut eaque fuga qui exercitationem excepturi amet, placeat illo dignissimos laborum ipsum vitae distinctio! Impedit nihil consequatur molestiae.
               </p>
           </Col>
-          <Col lg='3'>
+          <Col lg='3' md='4' className='mb-4'>
             <div className="footer-quick-links">
               <h4 className="quick-links-title">Top Catogeries</h4>
               <ListGroup>
@@ -39,7 +39,7 @@ export default function Footer() {
               </ListGroup>
             </div>
           </Col>
-          <Col lg='2'>
+          <Col lg='3' md='4' className='mb-4'>
             <div className="footer-quick-links">
                 <h4 className="quick-links-title">Usefull Links</h4>
                 <ListGroup>
@@ -58,7 +58,7 @@ export default function Footer() {
                 </ListGroup>
               </div>
           </Col>
-          <Col lg='3'>
+          <Col lg='3' md='4'>
             <div className="footer-contact">
                   <h4 className="footer-contact-title">Contact</h4>
                   <ListGroup>
