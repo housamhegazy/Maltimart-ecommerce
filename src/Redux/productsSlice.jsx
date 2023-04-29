@@ -6,7 +6,7 @@ const initialState = {
   totalQuantity:0
 }
 
-export const productsSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
@@ -14,17 +14,18 @@ export const productsSlice = createSlice({
       const newItem = action.payload;
       const existingItem =  state.cartItems.find(item=> item.id === newItem.id)
       if(!existingItem){
-        state.cartItems.push()
+        state.cartItems = [...state.cartItems,{...newItem,Quantity:1}]
+        
+      }else{
+        existingItem.Quantity++
       }
-      const newCartitems = [...state.cartItems,{...action.payload,Quantity:1}]
-      state.cartItems = newCartitems
-      console.log(state.cartItems)
+      
     },
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { AddItem } = productsSlice.actions
+export const { AddItem } = cartSlice.actions
 
-export default productsSlice.reducer
+export default cartSlice.reducer

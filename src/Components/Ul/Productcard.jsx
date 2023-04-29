@@ -1,19 +1,32 @@
 import React from "react";
 import "../../styles/product.card.css";
-import productImg from "../../assets/images/arm-chair-01.jpg";
 import { motion } from "framer-motion";
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
+import {  useDispatch } from 'react-redux'
 import { AddItem } from '../../Redux/productsSlice'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Productcard({
   item
 }) {
 
-  // @ts-ignore
-  const {cartItems} = useSelector((state) => state.counter)
+ 
   const dispatch = useDispatch()
   
+  const addTocart = (item)=>{
+    dispatch(AddItem(item))
+    toast.success(`${item.productName} added succesfully`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+  }
   return (
     <Col lg="3" md="4">
       <div className="product__item">
@@ -35,7 +48,7 @@ export default function Productcard({
           <span className="price">${item.price}</span>
           <motion.span whileTap={{ scale: 1.1 }}
             onClick={()=>{
-              dispatch(AddItem(item))
+              addTocart(item)
               
             }}
           >

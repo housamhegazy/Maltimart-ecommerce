@@ -5,6 +5,7 @@ import user__icon from "../../assets/images/user-icon.png";
 import { NavLink } from "react-router-dom";
 import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from 'react-redux'
 const navLinks = [
   {
     path: "/",
@@ -22,7 +23,8 @@ const navLinks = [
 export default function Header() {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
-
+  // @ts-ignore
+  const {cartItems} = useSelector((state) => state.cart)
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 80) {
@@ -38,6 +40,7 @@ export default function Header() {
     return window.removeEventListener("scroll", stickyHeaderFunc);
   }, []);
  
+  const totalProducts = cartItems.length
   return (
     <div className="header" ref={headerRef} >
       <Container>
@@ -68,7 +71,7 @@ export default function Header() {
               </span>
               <span className="cart__icon">
                 <i className="ri-shopping-bag-line"></i>
-                <span className="badge">1</span>
+                <span className="badge">{totalProducts}</span>
               </span>
               <span>
                 <motion.img
