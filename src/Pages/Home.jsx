@@ -10,12 +10,14 @@ import ProductList from 'Components/Ul/ProductList'
 import products from 'assets/data/products'
 import counterImg from '../assets/images/counter-timer-img.png'
 import Clock from 'Components/Ul/Clock'
+
 export default function Home() {
 const [trendingProducts,settrendingProducts] = useState([])
 const [bestSalesProducts,setbestSalesProducts] = useState([])
 const [mobileproducts,setmobileproducts] = useState([])
 const [wirelessProducts,setwirelessProducts] = useState([])
 const [popularProducts,setpopularProducts] = useState([])
+
 useEffect(()=>{
   const filteredtrendingProducts = products.filter((item)=>{return item.category === "chair"});
   const filteredbestSalesProducts = products.filter((item)=>{return item.category === "sofa"});
