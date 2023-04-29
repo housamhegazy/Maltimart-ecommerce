@@ -5,11 +5,11 @@ import user__icon from "../../assets/images/user-icon.png";
 import { NavLink } from "react-router-dom";
 import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 const navLinks = [
   {
     path: "/",
-    name: "Home",
+    name: "Home",  
   },
   {
     path: "/shope",
