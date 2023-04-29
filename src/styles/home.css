@@ -51,6 +51,7 @@
     background: #fff;
     color:var(--primary-color);
     font-weight: 600;
+    margin-bottom: 20px;
 }
 .store__btn a:hover{
     color: inherit;
@@ -69,6 +70,13 @@
     .counter__img{
         display: none;
     }
+    .store__btn{
+        margin-right:auto;
+        margin-left:auto;
+        display: block;
+        margin-bottom: 20px;
+    }
+    
 }
 @media (max-width:768px){
     .hero__content h2{

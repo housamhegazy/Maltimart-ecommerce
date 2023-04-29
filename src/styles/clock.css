@@ -4,3 +4,16 @@
         justify-content: center;
     }
 }
+
+
+@media (max-width:768px){
+    .clock__wrapper .clock{
+        gap: 0.5rem!important;
+    }
+    .clock__wrapper .clock h1{
+        font-size: 18px!important;
+    }
+    .clock__wrapper .clock h5{
+        font-size: 14px!important;
+    }
+}
