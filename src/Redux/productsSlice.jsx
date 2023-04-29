@@ -11,7 +11,14 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     AddItem: (state, action) => {
-      
+      const newItem = action.payload;
+      const existingItem =  state.cartItems.find(item=> item.id === newItem.id)
+      if(!existingItem){
+        state.cartItems.push()
+      }
+      const newCartitems = [...state.cartItems,{...action.payload,Quantity:1}]
+      state.cartItems = newCartitems
+      console.log(state.cartItems)
     },
     
   },
