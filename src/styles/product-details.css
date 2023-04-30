@@ -70,3 +70,11 @@
     font-weight: 600;
     margin-top: 30px;
 }
+@media(max-width:768px){
+    .product-details h2{
+        font-size: 1.3rem;
+    }
+    .rating-group{
+        column-gap: .5rem!important;
+    }
+}

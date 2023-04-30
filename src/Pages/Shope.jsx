@@ -55,7 +55,7 @@ export default function Shope() {
       <section>
         <Container>
           <Row>
-            <Col lg="3" md="3">
+            <Col lg="3" sm="6" xs='6' >
               <div className="filter-widget">
                 <select onChange={handleFilterData}>
                   <option>Filter by Category</option>
@@ -67,7 +67,7 @@ export default function Shope() {
                 </select>
               </div>
             </Col>
-            <Col lg="3" md="3">
+            <Col lg="3" sm='6' xs="6" className="text-end">
               <div className="filter-widget">
                 <select>
                   <option>Sort By</option>
@@ -76,7 +76,7 @@ export default function Shope() {
                 </select>
               </div>
             </Col>
-            <Col lg="6" md="6">
+            <Col lg="6" md="12">
               <div className="search-box">
                 <input
                   onChange={handlesearch}
