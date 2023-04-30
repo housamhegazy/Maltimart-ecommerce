@@ -25,3 +25,43 @@
 .active-tap{
     font-weight: 600;
 }
+.product-review ul li{
+    margin-bottom: 10px;
+}
+.product-review ul li span{
+    color:coral;
+    font-weight: 600;
+}
+.product-review ul li p{
+    margin-top: 10px;
+}
+.review-form{
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+}
+.review-form h5{
+    font-size: 1.2rem;
+    font-weight: 600;
+
+}
+.form-group{
+    margin-bottom: 30px;
+}
+
+.form-group input,.form-group textarea{
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 8px 8px;
+}
+.form-group input:focus,.form-group textarea:focus{
+    outline:none
+}
+.form-group span {
+    display: flex;
+    align-items: center;
+    gap:5px;
+    color:coral;
+    font-weight: 600;
+}

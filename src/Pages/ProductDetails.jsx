@@ -22,6 +22,7 @@ export default function ProductDetails() {
   } = product;
 
   const [tabClass, setTabClass] = useState("desc");
+  const [Rating,setrating] = useState(null)
   return (
     <Helmet title={productName}>
       <CommonSection title={productName} />
@@ -91,17 +92,37 @@ export default function ProductDetails() {
                 {tabClass === "desc" ? (
                   <p className={`description`}>{description}</p>
                 ) : (
-                  <div className="review-wrapper mt-4">
-                    <div className="product-review">
-                      <ul className={`product-reviews`}>
+                  <div className="product-review mt-4">
+                    <div className="review-wrapper">
+                      <ul>
                         {reviews.map((item,index) => {
                           return(
                           <li key={index}>
-                            <span>{item.rating} average rating</span>
+                            <h6>john deo</h6>
+                            <span>{item.rating} rating</span>
                             <p>{item.text}</p>
                           </li>);
                         })}
                       </ul>
+                      <div className="review-form">
+                        <h5 className="mb-3">Leave Your Experience</h5>
+                        <form action="">
+                          <div className="form-group">
+                            <input type="text" placeholder="Enter Name"/>
+                          </div>
+                          <div className="form-group d-flex align-items-center">
+                            <span>1<i className="ri-star-s-line"></i></span>
+                            <span>2<i className="ri-star-s-line"></i></span>
+                            <span>3<i className="ri-star-s-line"></i></span>
+                            <span>4<i className="ri-star-s-line"></i></span>
+                            <span>5<i className="ri-star-s-line"></i></span>
+                          </div>
+                          <div className="form-group">
+                            <textarea rows={4} placeholder="review message"/>
+                          </div>
+                          <button type="submit" className="buy-btn">submit</button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 )}
