@@ -7,7 +7,10 @@ import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import "../styles/product-details.css";
 import { motion } from "framer-motion";
+import ProductList from "Components/Ul/ProductList";
 export default function ProductDetails() {
+  const [tabClass, setTabClass] = useState("desc");
+  const [Rating,setrating] = useState(null)
   const param = useParams();
   const id = param.productId;
   const product = products.find((item) => item.id === id);
@@ -19,10 +22,10 @@ export default function ProductDetails() {
     description,
     reviews,
     avgRating,
+    category
   } = product;
 
-  const [tabClass, setTabClass] = useState("desc");
-  const [Rating,setrating] = useState(null)
+const relatedProducts = products.filter((item)=>item.category === category)
   return (
     <Helmet title={productName}>
       <CommonSection title={productName} />
@@ -110,17 +113,17 @@ export default function ProductDetails() {
                           <div className="form-group">
                             <input type="text" placeholder="Enter Name"/>
                           </div>
-                          <div className="form-group d-flex align-items-center">
-                            <span>1<i className="ri-star-s-line"></i></span>
-                            <span>2<i className="ri-star-s-line"></i></span>
-                            <span>3<i className="ri-star-s-line"></i></span>
-                            <span>4<i className="ri-star-s-line"></i></span>
-                            <span>5<i className="ri-star-s-line"></i></span>
+                          <div className="form-group d-flex align-items-center gap-4">
+                            <span onClick={()=>{setrating(1)}}>1<i className="ri-star-s-line"></i></span>
+                            <span onClick={()=>{setrating(2)}}>2<i className="ri-star-s-line"></i></span>
+                            <span onClick={()=>{setrating(3)}}>3<i className="ri-star-s-line"></i></span>
+                            <span onClick={()=>{setrating(4)}}>4<i className="ri-star-s-line"></i></span>
+                            <span onClick={()=>{setrating(5)}}>5<i className="ri-star-s-line"></i></span>
                           </div>
                           <div className="form-group">
                             <textarea rows={4} placeholder="review message"/>
                           </div>
-                          <button type="submit" className="buy-btn">submit</button>
+                          <motion.button whileTap={{scale:1.1}} type="submit" className="buy__btn">submit</motion.button>
                         </form>
                       </div>
                     </div>
@@ -128,6 +131,10 @@ export default function ProductDetails() {
                 )}
               </div>
             </Col>
+            <Col lg='12'>
+                <h2 className="related-products">You Might Also Like </h2>  
+            </Col>
+            <ProductList data={relatedProducts}/>
           </Row>
         </Container>
       </section>
