@@ -39,7 +39,7 @@ export default function Productcard({
         </div>
         <div className="p-2 product__info">
           <h3 className="product__name">
-            <Link to={`/shope/${item.id}`}>{item.productName}</Link>
+            <Link to={`/productDetails/${item.id}`}>{item.productName}</Link>
           </h3>
           <span className="text-center d-block">{item.category}</span>
         </div>
