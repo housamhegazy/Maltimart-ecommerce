@@ -1,3 +1,27 @@
 .product-details{
     margin-top: 50px;
 }
+.product-details h2{
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+.product-rating span{
+    color:coral
+}
+.product-rating p span{
+    font-weight: 500;
+}
+.product-price{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.tap-wrapper{
+    color:var(--primary-color);
+    font-weight: 500;
+}
+.tap-wrapper h6{
+    cursor: pointer;
+}
+.active-tap{
+    font-weight: 600;
+}
