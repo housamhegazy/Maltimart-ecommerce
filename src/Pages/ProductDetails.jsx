@@ -2,7 +2,7 @@ import CommonSection from "Components/Ul/CommonSection";
 import Productcard from "Components/Ul/Productcard";
 import Helmet from "Components/helmet/Helmet";
 import products from "assets/data/products";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import "../styles/product-details.css";
@@ -12,6 +12,8 @@ export default function ProductDetails() {
   const [tabClass, setTabClass] = useState("desc");
   const [Rating,setrating] = useState(null)
   const param = useParams();
+  const reviewUser = useRef(null)
+  const reviewMSG = useRef(null)
   const id = param.productId;
   const product = products.find((item) => item.id === id);
   const {
@@ -25,6 +27,12 @@ export default function ProductDetails() {
     category
   } = product;
 
+  const submitHandler = (e)=>{
+    e.preventDefault()
+    const reviewUserName = reviewUser.current.value;
+    const reviewmessage = reviewMSG.current.value;
+    console.log(reviewUserName,reviewmessage)
+  }
 const relatedProducts = products.filter((item)=>item.category === category)
   return (
     <Helmet title={productName}>
@@ -60,7 +68,12 @@ const relatedProducts = products.filter((item)=>item.category === category)
                     <span>{avgRating}</span> Rating
                   </p>
                 </div>
-                <span className="product-price">${price}</span>
+                <div className="d-flex align-items-center gap-5">
+                  
+                  <span className="product-price">${price}</span>
+                  <span>category : {category}</span>
+
+                </div>
                 <p>{shortDesc}</p>
                 <motion.button whileTap={{ scale: 0.9 }} className="buy__btn">
                   Add To Cart
@@ -109,9 +122,9 @@ const relatedProducts = products.filter((item)=>item.category === category)
                       </ul>
                       <div className="review-form">
                         <h5 className="mb-3">Leave Your Experience</h5>
-                        <form action="">
+                        <form action="" onSubmit={submitHandler}>
                           <div className="form-group">
-                            <input type="text" placeholder="Enter Name"/>
+                            <input ref = {reviewUser} type="text" placeholder="Enter Name"/>
                           </div>
                           <div className="form-group d-flex align-items-center gap-4">
                             <span onClick={()=>{setrating(1)}}>1<i className="ri-star-s-line"></i></span>
@@ -121,7 +134,7 @@ const relatedProducts = products.filter((item)=>item.category === category)
                             <span onClick={()=>{setrating(5)}}>5<i className="ri-star-s-line"></i></span>
                           </div>
                           <div className="form-group">
-                            <textarea rows={4} placeholder="review message"/>
+                            <textarea ref={reviewMSG} rows={4} placeholder="review message"/>
                           </div>
                           <motion.button whileTap={{scale:1.1}} type="submit" className="buy__btn">submit</motion.button>
                         </form>
@@ -131,8 +144,8 @@ const relatedProducts = products.filter((item)=>item.category === category)
                 )}
               </div>
             </Col>
-            <Col lg='12'>
-                <h2 className="related-products">You Might Also Like </h2>  
+            <Col lg='12'className="mt-5">
+                <h2 className="related-title">You May Also Like </h2>  
             </Col>
             <ProductList data={relatedProducts}/>
           </Row>
