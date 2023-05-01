@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
 import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 const navLinks = [
   {
     path: "/",
@@ -23,6 +24,7 @@ const navLinks = [
 export default function Header() {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const navigate = useNavigate()
   // @ts-ignore
   const {cartItems} = useSelector((state) => state.cart)
   const stickyHeaderFunc = () => {
@@ -69,7 +71,7 @@ export default function Header() {
                 <i className="ri-heart-3-fill"></i>
                 <span className="badge">1</span>
               </span>
-              <span className="cart__icon">
+              <span className="cart__icon" onClick={()=>{navigate('/cart')}}>
                 <i className="ri-shopping-bag-line"></i>
                 <span className="badge">{totalProducts}</span>
               </span>

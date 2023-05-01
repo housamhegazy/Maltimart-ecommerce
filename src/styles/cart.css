@@ -1,0 +1,21 @@
+table tbody tr td img{
+    width:80px;
+    height: 80px;
+    object-fit: cover;
+}
+td i {
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+}
+td{
+    color:var(--primary-color);
+    height: 100px;
+}
+td p{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

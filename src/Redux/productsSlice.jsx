@@ -22,11 +22,16 @@ export const cartSlice = createSlice({
       }
       
     },
+    DeleteIte: (state,action)=>{
+      const itemTodelete = action.payload;
+      state.cartItems = state.cartItems.filter((item)=>item.id !== itemTodelete.id)
+      localStorage.setItem("cart",JSON.stringify(state.cartItems))
+    }
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { AddItem } = cartSlice.actions
+export const { AddItem,DeleteIte } = cartSlice.actions
 
 export default cartSlice.reducer
