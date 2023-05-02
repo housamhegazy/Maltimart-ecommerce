@@ -145,9 +145,20 @@ export default function Header() {
                               setopenMenu(false);
                             }}
                           >
-                            signin
+                            login
                           </Link>
                         </li>
+                        <li>
+                          <Link
+                            to="/dashboard"
+                            onClick={() => {
+                              setopenMenu(false);
+                            }}
+                          >
+                            Dashboard
+                          </Link>
+                        </li>
+
                         </>
                         
                       )}
