@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./Header.css";
 import logo from "../../assets/images/eco-logo.png";
 import user__icon from "../../assets/images/user-icon.png";
@@ -31,7 +31,7 @@ export default function Header() {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const navigate = useNavigate();
-
+  const [openMenu, setopenMenu] = useState(false);
   // @ts-ignore
   const { cartItems } = useSelector((state) => state.cart);
   const stickyHeaderFunc = () => {
@@ -96,31 +96,33 @@ export default function Header() {
                 <i className="ri-shopping-bag-line"></i>
                 <span className="badge">{totalProducts}</span>
               </span>
-              <span>
+              <span className="profile">
                 <motion.img
+                onClick={()=>{
+                  setopenMenu(!openMenu)
+                }}
+                  className="profile-img"
                   whileTap={{ scale: 1.1 }}
                   src={user ? user.photoURL : user__icon}
                   alt="user-icon"
                 />
+                {/* login and logout icon */}
+                {openMenu && (
+                    <div
+                      className="profile-actions d-flex justify-content-center align-items-center"
+                      onClick={() => {
+                        logOut();
+                      }}
+                    >
+                      {user && <i className="ri-logout-box-line"></i>}
+                      {!user && (
+                        <Link to="/login">
+                          <i className="ri-login-box-line"></i>
+                        </Link>
+                      )}
+                    </div>
+                )}
               </span>
-              {/* login and logout icon */}
-              {user && (
-                <span
-                  className="profile-actions"
-                  onClick={() => {
-                    logOut();
-                  }}
-                >
-                  <i className="ri-logout-box-line"></i>
-                </span>
-              )}
-              {!user && (
-                <span className="profile-actions">
-                  <Link to="/login">
-                    <i className="ri-login-box-line"></i>
-                  </Link>
-                </span>
-              )}
 
               {/* mobile menu */}
               <div className="mobile__menu">
