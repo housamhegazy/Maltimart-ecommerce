@@ -16,17 +16,7 @@ export default function Productcard({
   
   const addTocart = (item)=>{
     dispatch(AddItem(item))
-    
-    toast.success(`${item.productName} added succesfully`, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
+    toast.success(`${item.productName} added succesfully`);
   }
   return (
     <Col lg="3" md="4">
