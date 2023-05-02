@@ -114,13 +114,19 @@ export default function Header() {
                 {openMenu && (
                   <div className="profile-actions d-flex justify-content-center align-items-center">
                     {user && (
-                      <i
+                      <div className="d-flex flex-column justify-content-center align-items-center">
+                        <span
                         onClick={() => {
                           logOut();
                           setopenMenu(false);
                         }}
-                        className="ri-logout-box-line"
-                      ></i>
+                        
+                      > Signout</span>
+                        <span>
+                          SignUp
+                        </span>
+                      </div>
+                      
                     )}
                     {!user && (
                       <Link to="/login" onClick={() => {

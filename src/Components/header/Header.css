@@ -111,9 +111,11 @@
     top:100%;
     left:0;
     background-color: #fff;
-    width:50px;
-    height: 50px;
     border-radius: 10px;
+    font-size: 15px;
+}
+.profile-actions span{
+
 }
 
 @media (max-width:768px){
