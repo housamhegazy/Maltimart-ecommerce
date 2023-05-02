@@ -55,10 +55,10 @@ export default function Header() {
       .then(() => {
         // Sign-out successful.
         navigate("/login");
-        toast.success("sign out successfully")
+        toast.success("sign out successfully");
       })
       .catch((error) => {
-        toast.error(error.message)
+        toast.error(error.message);
         // An error happened.
       });
   };
@@ -112,26 +112,28 @@ export default function Header() {
                 />
                 {/* login and logout icon */}
                 {openMenu && (
-                  <div className="profile-actions d-flex justify-content-center align-items-center">
+                  <div className="profile-actions">
                     {user && (
-                      <div className="d-flex flex-column justify-content-center align-items-center">
-                        <span
-                        onClick={() => {
-                          logOut();
-                          setopenMenu(false);
-                        }}
-                        
-                      > Signout</span>
-                        <span>
-                          SignUp
-                        </span>
-                      </div>
-                      
+                      <ul className="menu d-flex flex-column justify-content-center align-items-center">
+                        <li
+                          onClick={() => {
+                            logOut();
+                            setopenMenu(false);
+                          }}
+                        >
+                          {" "}
+                          Signout
+                        </li>
+                        <li><Link to={"/signup"}>SignUp</Link></li>
+                      </ul>
                     )}
                     {!user && (
-                      <Link to="/login" onClick={() => {
-                        setopenMenu(false);
-                      }}>
+                      <Link
+                        to="/login"
+                        onClick={() => {
+                          setopenMenu(false);
+                        }}
+                      >
                         <i className="ri-login-box-line"></i>
                       </Link>
                     )}

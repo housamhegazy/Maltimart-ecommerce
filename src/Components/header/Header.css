@@ -114,10 +114,15 @@
     border-radius: 10px;
     font-size: 15px;
 }
-.profile-actions span{
 
+.profile-actions .menu{
+    padding:5px 10px;
+    line-height: 1;
 }
-
+.profile-actions .menu li{
+   cursor: pointer;
+   padding:8px 0
+}
 @media (max-width:768px){
     .navigation{
         position: fixed;
