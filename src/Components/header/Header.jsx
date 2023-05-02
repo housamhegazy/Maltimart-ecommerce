@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const navLinks = [
   {
@@ -36,6 +37,7 @@ export default function Header() {
   const { cartItems } = useSelector((state) => state.cart);
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
+      setopenMenu(false);
       if (window.scrollY > 80) {
         headerRef.current.classList.add("stcky-header");
       } else {
@@ -53,8 +55,10 @@ export default function Header() {
       .then(() => {
         // Sign-out successful.
         navigate("/login");
+        toast.success("sign out successfully")
       })
       .catch((error) => {
+        toast.error(error.message)
         // An error happened.
       });
   };
@@ -98,9 +102,9 @@ export default function Header() {
               </span>
               <span className="profile">
                 <motion.img
-                onClick={()=>{
-                  setopenMenu(!openMenu)
-                }}
+                  onClick={() => {
+                    setopenMenu(!openMenu);
+                  }}
                   className="profile-img"
                   whileTap={{ scale: 1.1 }}
                   src={user ? user.photoURL : user__icon}
@@ -108,19 +112,24 @@ export default function Header() {
                 />
                 {/* login and logout icon */}
                 {openMenu && (
-                    <div
-                      className="profile-actions d-flex justify-content-center align-items-center"
-                      onClick={() => {
-                        logOut();
-                      }}
-                    >
-                      {user && <i className="ri-logout-box-line"></i>}
-                      {!user && (
-                        <Link to="/login">
-                          <i className="ri-login-box-line"></i>
-                        </Link>
-                      )}
-                    </div>
+                  <div className="profile-actions d-flex justify-content-center align-items-center">
+                    {user && (
+                      <i
+                        onClick={() => {
+                          logOut();
+                          setopenMenu(false);
+                        }}
+                        className="ri-logout-box-line"
+                      ></i>
+                    )}
+                    {!user && (
+                      <Link to="/login" onClick={() => {
+                        setopenMenu(false);
+                      }}>
+                        <i className="ri-login-box-line"></i>
+                      </Link>
+                    )}
+                  </div>
                 )}
               </span>
 
