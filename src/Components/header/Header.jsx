@@ -2,17 +2,19 @@ import React, { useRef, useEffect } from "react";
 import "./Header.css";
 import logo from "../../assets/images/eco-logo.png";
 import user__icon from "../../assets/images/user-icon.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
+import { signOut } from "firebase/auth";
+
 const navLinks = [
   {
     path: "/",
-    name: "Home",  
+    name: "Home",
   },
   {
     path: "/shope",
@@ -28,10 +30,10 @@ export default function Header() {
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // @ts-ignore
-  const {cartItems} = useSelector((state) => state.cart)
+  const { cartItems } = useSelector((state) => state.cart);
   const stickyHeaderFunc = () => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 80) {
@@ -46,10 +48,19 @@ export default function Header() {
     stickyHeaderFunc();
     return window.removeEventListener("scroll", stickyHeaderFunc);
   }, []);
- 
-  const totalProducts = cartItems.length
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/login");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  const totalProducts = cartItems.length;
   return (
-    <div className="header" ref={headerRef} >
+    <div className="header" ref={headerRef}>
       <Container>
         <Row>
           <div className="nav-wrapper">
@@ -76,18 +87,43 @@ export default function Header() {
                 <i className="ri-heart-3-fill"></i>
                 <span className="badge">1</span>
               </span>
-              <span className="cart__icon" onClick={()=>{navigate('/cart')}}>
+              <span
+                className="cart__icon"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              >
                 <i className="ri-shopping-bag-line"></i>
                 <span className="badge">{totalProducts}</span>
               </span>
               <span>
                 <motion.img
                   whileTap={{ scale: 1.1 }}
-                  src={user?user.photoURL:user__icon}
+                  src={user ? user.photoURL : user__icon}
                   alt="user-icon"
                 />
               </span>
-              <div className="mobile__menu" >
+              {/* login and logout icon */}
+              {user && (
+                <span
+                  className="profile-actions"
+                  onClick={() => {
+                    logOut();
+                  }}
+                >
+                  <i className="ri-logout-box-line"></i>
+                </span>
+              )}
+              {!user && (
+                <span className="profile-actions">
+                  <Link to="/login">
+                    <i className="ri-login-box-line"></i>
+                  </Link>
+                </span>
+              )}
+
+              {/* mobile menu */}
+              <div className="mobile__menu">
                 <span onClick={menuToggleFunc}>
                   <i className="ri-menu-line"></i>
                 </span>

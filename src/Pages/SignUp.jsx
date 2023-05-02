@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import "../styles/login.css";
 import Helmet from "Components/helmet/Helmet";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
@@ -14,14 +14,21 @@ import { toast } from "react-toastify";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
-
+import { useAuthState } from 'react-firebase-hooks/auth';
 export default function Signup() {
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+  useEffect(()=>{
+    if(user && loading){
+      navigate("/")
+    } 
+  },[user,loading])
   const [Username, setUsername] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [File, setFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [loadingg, setLoading] = useState(false);
+
 
   const signup = async (e) => {
     e.preventDefault();
@@ -73,65 +80,68 @@ export default function Signup() {
       // ..
     }
   };
-  return (
-    <Helmet title={"SignUp"}>
-      <Container>
-        <Row>
-          {loading ? (
-            <Col lg="12" className="text-center">
-              <h6 className="fw-bold">loading....</h6>
-            </Col>
-          ) : (
-            <Col lg="6" className="m-auto text-center">
-              <h3 className="fw-bold fs-4">create an account</h3>
-              <Form className="auth-form" onSubmit={signup}>
-                <FormGroup className="form-group">
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={Username}
-                    onChange={(e) => {
-                      setUsername(e.target.value);
-                    }}
-                  />
-                </FormGroup>
-                <FormGroup className="form-group">
-                  <input
-                    type="email"
-                    placeholder="Enter Your Email"
-                    value={Email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                  />
-                </FormGroup>
-                <FormGroup className="form-group">
-                  <input
-                    type="password"
-                    placeholder="Enter Your password"
-                    value={Password}
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                  />
-                </FormGroup>
-                <FormGroup className="form-group">
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      setFile(e.target.files[0]);
-                    }}
-                  />
-                </FormGroup>
-                <button className="buy__btn login-btn">Signup</button>
-                <p>
-                  already have an account ? <Link to="/login">Login</Link>
-                </p>
-              </Form>
-            </Col>
-          )}
-        </Row>
-      </Container>
-    </Helmet>
-  );
+  if(!user){
+    return (
+      <Helmet title={"SignUp"}>
+        <Container>
+          <Row>
+            {loading ? (
+              <Col lg="12" className="text-center">
+                <h6 className="fw-bold">loading....</h6>
+              </Col>
+            ) : (
+              <Col lg="6" className="m-auto text-center">
+                <h3 className="fw-bold fs-4">create an account</h3>
+                <Form className="auth-form" onSubmit={signup}>
+                  <FormGroup className="form-group">
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      value={Username}
+                      onChange={(e) => {
+                        setUsername(e.target.value);
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup className="form-group">
+                    <input
+                      type="email"
+                      placeholder="Enter Your Email"
+                      value={Email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup className="form-group">
+                    <input
+                      type="password"
+                      placeholder="Enter Your password"
+                      value={Password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup className="form-group">
+                    <input
+                      type="file"
+                      onChange={(e) => {
+                        setFile(e.target.files[0]);
+                      }}
+                    />
+                  </FormGroup>
+                  <button className="buy__btn login-btn">Signup</button>
+                  <p>
+                    already have an account ? <Link to="/login">Login</Link>
+                  </p>
+                </Form>
+              </Col>
+            )}
+          </Row>
+        </Container>
+      </Helmet>
+    );
+  }
+  
 }
