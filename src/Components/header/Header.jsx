@@ -113,30 +113,43 @@ export default function Header() {
                 {/* login and logout icon */}
                 {openMenu && (
                   <div className="profile-actions">
-                    {user && (
-                      <ul className="menu d-flex flex-column justify-content-center align-items-center">
-                        <li
-                          onClick={() => {
-                            logOut();
-                            setopenMenu(false);
-                          }}
-                        >
-                          {" "}
-                          Signout
+                    <ul className="menu d-flex flex-column justify-content-center align-items-center">
+                      {user && (
+                        <>
+                          <li
+                            onClick={() => {
+                              logOut();
+                              setopenMenu(false);
+                            }}
+                          >
+                            {" "}
+                            Signout
+                          </li>
+                          <li>
+                            <Link
+                              onClick={() => {
+                                setopenMenu(false);
+                              }}
+                              to={"/signup"}
+                            >
+                              SignUp
+                            </Link>
+                          </li>
+                        </>
+                      )}
+                      {!user && (
+                        <li>
+                          <Link
+                            to="/login"
+                            onClick={() => {
+                              setopenMenu(false);
+                            }}
+                          >
+                            signin
+                          </Link>
                         </li>
-                        <li><Link to={"/signup"}>SignUp</Link></li>
-                      </ul>
-                    )}
-                    {!user && (
-                      <Link
-                        to="/login"
-                        onClick={() => {
-                          setopenMenu(false);
-                        }}
-                      >
-                        <i className="ri-login-box-line"></i>
-                      </Link>
-                    )}
+                      )}
+                    </ul>
                   </div>
                 )}
               </span>
