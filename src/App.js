@@ -15,8 +15,9 @@ import Shope from "./Pages/Shope";
 import Checkout from "./Pages/Checkout";
 import Error404 from "./Pages/Error404";
 import { ToastContainer } from "react-toastify";
-import AddProducts from "admin/AddProducts";
+import AddProduct from "admin/AddProduct";
 import AllProducts from "admin/AllProducts";
+import Dashboard from "admin/Dashboard";
 
 
 const router = createBrowserRouter(
@@ -29,8 +30,9 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/all-products" element={<AllProducts />} />
-      <Route path="/dashboard/add-products" element={<AddProducts />} />
+      <Route path="/dashboard/add-product" element={<AddProduct />} />
       <Route path="*" element={<Error404 />} />
     </Route>
   )

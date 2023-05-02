@@ -1,12 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../Components/header/Header";
 import Footer from "../Components/footer/Footer";
+import AdminNav from "admin/AdminNav";
 
 export default function Roote() {
+  const location = useLocation()
   return (
     <div>
-      <Header />
+      {
+      location.pathname.startsWith('/dashboard')? <AdminNav/> : <Header />
+      }
 
       <Outlet />
 
