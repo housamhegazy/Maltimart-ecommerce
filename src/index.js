@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <ToastContainer
-      position="top-right"
-      autoClose={3000}
-      closeOnClick
-      pauseOnHover={false}
-      theme="dark"
+      // position="top-right"
+      // autoClose={3000}
+      // closeOnClick
+      // pauseOnHover={false}
+      // theme="dark"
       />
     <ToastContainer />
     <App />

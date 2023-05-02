@@ -7,6 +7,8 @@ import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
 import { useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../../firebase/config";
 const navLinks = [
   {
     path: "/",
@@ -22,9 +24,12 @@ const navLinks = [
   },
 ];
 export default function Header() {
+  const [user] = useAuthState(auth);
+
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const navigate = useNavigate()
+
   // @ts-ignore
   const {cartItems} = useSelector((state) => state.cart)
   const stickyHeaderFunc = () => {
@@ -78,7 +83,7 @@ export default function Header() {
               <span>
                 <motion.img
                   whileTap={{ scale: 1.1 }}
-                  src={user__icon}
+                  src={user?user.photoURL:user__icon}
                   alt="user-icon"
                 />
               </span>
