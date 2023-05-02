@@ -52,7 +52,7 @@ export default function Login() {
                 <h5>loading .... </h5>
               </Col>
             ) : (
-              <Col lg="6" className="m-auto text-center">
+              <Col lg="6" className="m-auto text-center my-5">
                 <h3 className="fw-bold fs-4">Login</h3>
                 <Form className="auth-form" onSubmit={signin}>
                   <FormGroup className="form-group">

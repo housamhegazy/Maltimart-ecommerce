@@ -19,7 +19,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   useEffect(()=>{
-    if(user || loading){
+    if(user && loading){
       navigate("/")
     } 
   },[user,loading])
@@ -90,7 +90,7 @@ export default function Signup() {
                 <h6 className="fw-bold">loading....</h6>
               </Col>
             ) : (
-              <Col lg="6" className="m-auto text-center">
+              <Col lg="6" className="m-auto text-center my-5">
                 <h3 className="fw-bold fs-4">create an account</h3>
                 <Form className="auth-form" onSubmit={signup}>
                   <FormGroup className="form-group">

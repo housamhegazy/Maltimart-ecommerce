@@ -115,7 +115,7 @@ export default function Header() {
                   <div className="profile-actions">
                     <ul className="menu d-flex flex-column justify-content-center align-items-center">
                       {user && (
-                        <>
+            
                           <li
                             onClick={() => {
                               logOut();
@@ -125,7 +125,10 @@ export default function Header() {
                             {" "}
                             Signout
                           </li>
-                          <li>
+                      )}
+                      {!user && (
+                        <>
+                         <li>
                             <Link
                               onClick={() => {
                                 setopenMenu(false);
@@ -135,10 +138,7 @@ export default function Header() {
                               SignUp
                             </Link>
                           </li>
-                        </>
-                      )}
-                      {!user && (
-                        <li>
+                          <li>
                           <Link
                             to="/login"
                             onClick={() => {
@@ -148,6 +148,8 @@ export default function Header() {
                             signin
                           </Link>
                         </li>
+                        </>
+                        
                       )}
                     </ul>
                   </div>
