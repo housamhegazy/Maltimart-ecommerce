@@ -7,7 +7,6 @@ import { Container, Row } from "reactstrap";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
 import { toast } from "react-toastify";
@@ -26,8 +25,7 @@ const navLinks = [
     name: "Cart",
   },
 ];
-export default function Header() {
-  const [user] = useAuthState(auth);
+export default function Header({user}) {
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);

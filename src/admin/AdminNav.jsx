@@ -1,6 +1,7 @@
 import React from 'react'
+import '../styles/admin.nav.css'
 import { Container,Row,Col } from 'reactstrap'
-export default function AdminNav() {
+export default function AdminNav({user}) {
   return (
     <header className='admin-header'>
       <div className="admin-nav-top">
@@ -16,6 +17,7 @@ export default function AdminNav() {
             <div className="admin-nav-top-right">
               <span><i className="ri-notification-line"></i></span>
               <span><i className="ri-settings-2-line"></i></span>
+              <img src={user ? user.photoURL:''} alt=''/>
             </div>
           </div>
         </Container>
