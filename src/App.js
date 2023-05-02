@@ -41,7 +41,7 @@ function App() {
       // theme="dark"
       />
       <ToastContainer />
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </>
   );
 }
