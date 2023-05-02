@@ -13,6 +13,10 @@ export default function AdminNav() {
               <input type="text" placeholder='Search....' />
               <span><i className="ri-search-line"></i></span>
             </div>
+            <div className="admin-nav-top-right">
+              <span><i className="ri-notification-line"></i></span>
+              <span><i className="ri-settings-2-line"></i></span>
+            </div>
           </div>
         </Container>
       </div>
