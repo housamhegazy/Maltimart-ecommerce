@@ -13,10 +13,10 @@ export default function Login() {
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   useEffect(()=>{
-    if(user || loading){
+    if(user && loading){
       navigate("/")
     } 
-  },[])
+  },[user,loading])
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [loadingg, setLoading] = useState(false);

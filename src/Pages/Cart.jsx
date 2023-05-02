@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/cart.css";
 import Helmet from "Components/helmet/Helmet";
 import CommonSection from "Components/Ul/CommonSection";

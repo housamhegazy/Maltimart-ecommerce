@@ -17,7 +17,7 @@ useEffect(()=>{
   if(!user && !loading){
     navigate("/login")
   } 
-},[])
+},[user,loading])
   if(user){
     return (
       <Helmet title={"Checkout"}>
