@@ -1,7 +1,8 @@
 
 import "../styles/admin.nav.css";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import { NavLink, useLocation } from "react-router-dom";
+import UserIcon from '../assets/images/user-icon.png'
 const adminNav = [
   {
     name: "Dashboard",
@@ -44,7 +45,7 @@ export default function AdminNav({ user }) {
                 <span>
                   <i className="ri-settings-2-line"></i>
                 </span>
-                <img src={user ? user.photoURL : ""} alt="" />
+                <img src={user ? user.photoURL : UserIcon } alt="" />
               </div>
             </div>
           </Container>

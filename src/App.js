@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import AddProduct from "admin/AddProduct";
 import AllProducts from "admin/AllProducts";
 import Dashboard from "admin/Dashboard";
+import Users from "admin/Users";
 
 
 const router = createBrowserRouter(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/all-products" element={<AllProducts />} />
       <Route path="/dashboard/add-product" element={<AddProduct />} />
+      <Route path="/dashboard/users" element={<Users />} />
       <Route path="*" element={<Error404 />} />
     </Route>
   )

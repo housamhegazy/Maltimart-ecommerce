@@ -39,7 +39,7 @@ export default function AllProducts() {
               {value.docs.length === 0 ? (
                 <h1 className="text-center"> no data added </h1>
               ) : (
-                <table>
+                <table className="w-100">
                   <thead>
                     <tr>
                       <th>image</th>
