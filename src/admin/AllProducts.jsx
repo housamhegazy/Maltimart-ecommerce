@@ -4,6 +4,7 @@ import { collection } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { Col, Container, Row } from "reactstrap";
 import Error404 from "Pages/Error404";
+import ClipLoader from "react-spinners/ClipLoader";
 export default function AllProducts() {
   const [value, loading, error] = useCollection(collection(db, "products"));
 
@@ -12,7 +13,14 @@ export default function AllProducts() {
   }
  
   if(loading){
-    return(<h4>loading.......</h4>)
+    return(<ClipLoader
+      color={'red'}
+
+
+      size={150}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />)
   }
   if(error){
     return(<Error404/>)
