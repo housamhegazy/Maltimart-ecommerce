@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { Form, FormGroup, Container, Row, Col } from "reactstrap";
 import { auth, db, storage } from "../firebase/config";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 export default function AddProduct() {
-  const [user, loading, error] = useAuthState(auth);
   const [enterTitle, setenterTitle] = useState("");
   const [shortDesc, setshortDesc] = useState("");
   const [description, setDescription] = useState("");
   const [price, setprice] = useState("");
   const [category, setcategory] = useState("");
   const [productImg, setproductImg] = useState(null);
-  const [loadingg, setloading] = useState(false);
+  const [loading, setloading] = useState(false);
+  const navigate = useNavigate()
   const addproduct = async (e) => {
     e.preventDefault();
     setloading(true);
@@ -23,7 +23,7 @@ export default function AddProduct() {
     try {
       //upload photo
       const docRef = await collection(db, `products`);
-      const storageRef = ref(storage,`productImages/${Date.now() + productImg.name}`)
+      const storageRef = ref(storage,`addedProductImg/${Date.now() + productImg.name}`)
       const uploadTask = uploadBytesResumable(storageRef, productImg);
 
       uploadTask.on(
@@ -50,8 +50,11 @@ export default function AddProduct() {
         }
       );
       toast.success("product successfully added");
+      navigate("/dashboard/all-products")
+      setloading(false);
     } catch (error) {
-
+      toast.error("product not added")
+      setloading(false);
     }
   };
   return (
@@ -59,7 +62,11 @@ export default function AddProduct() {
       <Container>
         <Row>
           <Col lg="12">
-            <h4 className="mb-5">Add Product</h4>
+            {
+              loading? <h4 className="text-center">Loading..........</h4>
+              :
+              <>
+              <h4 className="mb-5">Add Product</h4>
             <Form onSubmit={addproduct}>
               <FormGroup className="form-group">
                 <span>product title</span>
@@ -119,6 +126,7 @@ export default function AddProduct() {
                       setcategory(e.target.value);
                     }}
                   >
+                    <option value="choose" >choose</option>
                     <option value="chair">Chair</option>
                     <option value="sofa">Sofa</option>
                     <option value="mobile">Mobile</option>
@@ -144,6 +152,8 @@ export default function AddProduct() {
                 Add Product
               </button>
             </Form>
+              </>
+            }
           </Col>
         </Row>
       </Container>
