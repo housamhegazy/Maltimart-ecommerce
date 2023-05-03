@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { Form, FormGroup, Container, Row, Col } from "reactstrap";
-import { auth, db, storage } from "../firebase/config";
+import { db, storage } from "../firebase/config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { updateProfile } from "firebase/auth";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 export default function AddProduct() {
   const [enterTitle, setenterTitle] = useState("");
