@@ -16,13 +16,16 @@ import { db } from "../firebase/config";
 
 export default function Home() {
   const [value, loading, error] = useCollection(collection(db, "products"));
-
+  
 const [trendingProducts,settrendingProducts] = useState([])
 const [bestSalesProducts,setbestSalesProducts] = useState([])
 const [mobileproducts,setmobileproducts] = useState([])
 const [wirelessProducts,setwirelessProducts] = useState([])
 const [popularProducts,setpopularProducts] = useState([])
-
+if(value){
+  const products = value.docs;
+  console.log(products)
+}
 useEffect(()=>{
   if(value){
     const filteredtrendingProducts = value.docs.filter((item)=>{return item.data().category === "chair"});
