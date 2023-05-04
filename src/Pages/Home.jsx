@@ -15,8 +15,7 @@ import { collection } from "firebase/firestore";
 import { db } from "../firebase/config";
 import useGetdata from "../Custom-hook/useGetdata";
 export default function Home() {
-  // const [value, loading, error] = useCollection(collection(db, "products"));
-  const {data:products} = useGetdata("products")
+  const {data:products,loading} = useGetdata("products")
   const [trendingProducts, settrendingProducts] = useState([]);
   const [bestSalesProducts, setbestSalesProducts] = useState([]);
   const [mobileproducts, setmobileproducts] = useState([]);
@@ -24,7 +23,6 @@ export default function Home() {
   const [popularProducts, setpopularProducts] = useState([]);
 
   useEffect(() => {
-
       const filteredtrendingProducts = products.filter((item) => {
         return item.category === "chair";
       });
@@ -105,7 +103,6 @@ export default function Home() {
                   <h4 className="text-white fs-6 mb-2">Limited offer</h4>
                   <h3 className="text-white fs-5 mb-3">Quality Armchair</h3>
                 </div>
-
                 <Clock />
                 <motion.button
                   whileTap={{ scale: 1.1 }}
