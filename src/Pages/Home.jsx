@@ -22,9 +22,7 @@ export default function Home() {
   const [mobileproducts, setmobileproducts] = useState([]);
   const [wirelessProducts, setwirelessProducts] = useState([]);
   const [popularProducts, setpopularProducts] = useState([]);
-  if (value) {
-    const products = value.docs;
-  }
+
   useEffect(() => {
     if (value) {
       const filteredtrendingProducts = value.docs.filter((item) => {

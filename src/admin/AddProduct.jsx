@@ -40,7 +40,7 @@ export default function AddProduct() {
                 productName: enterTitle,
                 shortDesc: shortDesc,
                 description: description,
-                price: price,
+                price: Number(price),
                 category: category,
                 imgUrl: downloadURL,
               });

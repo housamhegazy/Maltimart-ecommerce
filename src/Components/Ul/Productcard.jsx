@@ -27,7 +27,7 @@ export default function Productcard({ item }) {
         <div className="p-2 product__info">
           <h3 className="product__name">
             <Link to={`/productDetails/${item.data().id}`}>
-              {item.productName}
+              {item.data().productName}
             </Link>
           </h3>
           <span className="text-center d-block">{item.data().category}</span>
