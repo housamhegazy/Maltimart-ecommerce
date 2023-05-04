@@ -8,7 +8,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import Loader from "Components/Loader/Loader";
 import { toast } from "react-toastify";
 export default function AllProducts() {
-  const [value, loading, error] = useCollection(collection(db, "products"));
+  const [value, loading, error] = useCollection(collection(db,"products"));
 
   const deleteItem = async (id) => {
     await deleteDoc(doc(db, "products", id));
@@ -56,7 +56,7 @@ export default function AllProducts() {
                           <td>
                             <img src={item.data().imgUrl} alt="" />
                           </td>
-                          <td>{item.data().title}</td>
+                          <td>{item.data().productName}</td>
                           <td>{item.data().category}</td>
                           <td>{item.data().price}</td>
                           <td>

@@ -1,6 +1,6 @@
 import CommonSection from "Components/Ul/CommonSection";
 import Helmet from "Components/helmet/Helmet";
-import products from "assets/data/products";
+// import products from "assets/data/products";
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
@@ -10,26 +10,45 @@ import ProductList from "Components/Ul/ProductList";
 import { useDispatch } from "react-redux";
 import { AddItem } from "../Redux/productsSlice";
 import { toast } from "react-toastify";
-
+import { useDocument } from "react-firebase-hooks/firestore";
+import { doc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import useGetdata from "../Custom-hook/useGetdata";
+import Loader from "Components/Loader/Loader";
+import Error404 from "./Error404";
 export default function ProductDetails() {
+  const param = useParams();
+  const id = param.productId;
+
+  const [value, loading, error] = useDocument(doc(db,'products', id));
+  const [item,setItem] = useState({});
+  const { data: products } = useGetdata("products");
+
+  useEffect(()=>{
+    if(value){
+      setItem(value.data())
+      console.log(item)
+    }
+  },[value])
+
   const [tabClass, setTabClass] = useState("desc");
   const [Rating,setrating] = useState(null)
-  const param = useParams();
+
   const reviewUser = useRef(null)
   const reviewMSG = useRef(null)
-  const id = param.productId;
+ 
   const dispatch =useDispatch()
-  const product = products.find((item) => item.id === id);
+  // const product = products.find((item) => item.id === id);
   const {
     imgUrl,
     productName,
     price,
     shortDesc,
     description,
-    reviews,
-    avgRating,
+    // reviews,
+    // avgRating,
     category
-  } = product;
+  } = item;
 
   const submitHandler = (e)=>{
     e.preventDefault()
@@ -46,7 +65,7 @@ export default function ProductDetails() {
   }
 
   const AddToCart = ()=>{
-    dispatch(AddItem(product))
+    dispatch(AddItem(item))
     toast.success(`${productName} added succesfully`, {
       position: "top-right",
       autoClose: 3000,
@@ -61,7 +80,20 @@ export default function ProductDetails() {
 const relatedProducts = products.filter((item)=>item.category === category)
 useEffect(()=>{
   window.scrollTo(0,0)
-},[product])
+},[item])
+
+if(loading){
+  return(
+    <Loader/>
+  )
+}
+if(error){
+  return(
+    <Error404/>
+  )
+}
+
+if(value){
   return (
     <Helmet title={productName}>
       <CommonSection title={productName} />
@@ -93,7 +125,7 @@ useEffect(()=>{
                     </span>
                   </div>
                   <p>
-                    <span>{avgRating}</span> Rating
+                    {/* <span>{avgRating}</span> Rating */}
                   </p>
                 </div>
                 <div className="d-flex align-items-center gap-5">
@@ -133,7 +165,7 @@ useEffect(()=>{
                     setTabClass("review");
                   }}
                 >
-                  Reviews ({reviews.length})
+                  Reviews 
                 </h6>
               </div>
               <div className={`tab-content mt-4`}>
@@ -143,14 +175,14 @@ useEffect(()=>{
                   <div className="product-review mt-4">
                     <div className="review-wrapper">
                       <ul>
-                        {reviews.map((item,index) => {
+                        {/* {reviews.map((item,index) => {
                           return(
                           <li key={index}>
                             <h6>john deo</h6>
                             <span>{item.rating} rating</span>
                             <p>{item.text}</p>
                           </li>);
-                        })}
+                        })} */}
                       </ul>
                       <div className="review-form">
                         <h5 className="mb-3">Leave Your Experience</h5>
@@ -179,10 +211,11 @@ useEffect(()=>{
             <Col lg='12'className="mt-5">
                 <h2 className="related-title">You May Also Like </h2>  
             </Col>
-            <ProductList data={relatedProducts}/>
+            {relatedProducts.length === 0 ? <h4 className="mt-5">no related products </h4>:<ProductList data={relatedProducts}/>}
           </Row>
         </Container>
       </section>
     </Helmet>
   );
+}
 }

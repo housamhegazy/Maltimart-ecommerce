@@ -13,6 +13,9 @@ export default function Cart() {
   const dispatch = useDispatch();
   let CartQuantity = 0;
   let Itemprice = 0;
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   return (
     <Helmet title={"cart"}>
       <CommonSection title={"cart"} />

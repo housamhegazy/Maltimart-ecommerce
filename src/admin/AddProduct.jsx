@@ -21,8 +21,8 @@ export default function AddProduct() {
     //======== add product to the firebase database ==========
     try {
       //upload photo
-      const docRef = await collection(db, `products`);
-      const storageRef = ref(storage,`addedProductImg/${Date.now() + productImg.name}`)
+      const docRef = await collection(db,`products`);
+      const storageRef = ref(storage,`addedProductImg/${Date.now()}`)
       const uploadTask = uploadBytesResumable(storageRef, productImg);
 
       uploadTask.on(
@@ -36,7 +36,6 @@ export default function AddProduct() {
             async (downloadURL) => {
               //store user data in firestore
               await addDoc(docRef, {
-                id:Date.now(),
                 productName: enterTitle,
                 shortDesc: shortDesc,
                 description: description,

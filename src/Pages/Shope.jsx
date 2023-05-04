@@ -2,45 +2,50 @@ import React, { useState, useEffect } from "react";
 import CommonSection from "Components/Ul/CommonSection";
 import Helmet from "Components/helmet/Helmet";
 import { Col, Container, Row } from "reactstrap";
-import products from "assets/data/products";
 import "../styles/shop.css";
 import ProductList from "Components/Ul/ProductList";
+import useGetdata from "Custom-hook/useGetdata";
 export default function Shope() {
-  const [productsData, setProductsData] = useState(products);
+  const { data: products,loading } = useGetdata("products");
 
+  const [productsData, setProductsData] = useState([]);
+  
   const handleFilterData = (e) => {
     const filterValue = e.target.value;
     if (filterValue === "sofa") {
       const filteredproducts = products.filter(
-        (item) => item.category === filterValue
+        (item) => item.category === "sofa"
       );
       setProductsData(filteredproducts);
     }
     if (filterValue === "mobile") {
       const filteredproducts = products.filter(
-        (item) => item.category === filterValue
+        (item) => item.category === "mobile"
       );
       setProductsData(filteredproducts);
     }
     if (filterValue === "chair") {
       const filteredproducts = products.filter(
-        (item) => item.category === filterValue
+        (item) => item.category === "chair"
       );
       setProductsData(filteredproducts);
     }
     if (filterValue === "watch") {
       const filteredproducts = products.filter(
-        (item) => item.category === filterValue
+        (item) => item.category === "watch"
       );
       setProductsData(filteredproducts);
     }
     if (filterValue === "wireless") {
       const filteredproducts = products.filter(
-        (item) => item.category === filterValue
+        (item) => item.category === "wireless"
       );
       setProductsData(filteredproducts);
     }
   };
+  useEffect(()=>{
+      setProductsData(products)
+  },[products])
   const handlesearch = (e) => {
     const searchValue = e.target.value;
     const searchedProducts = products.filter(
@@ -58,7 +63,7 @@ export default function Shope() {
             <Col lg="3" sm="6" xs='6' >
               <div className="filter-widget">
                 <select onChange={handleFilterData}>
-                  <option>Filter by Category</option>
+                  <option value={'allproducts'}>All products</option>
                   <option value="sofa">Sofa</option>
                   <option value="mobile">Mobile</option>
                   <option value="chair">Chair</option>
@@ -94,8 +99,8 @@ export default function Shope() {
       <section>
         <Container>
           <Row>
-            {productsData.length === 0 ? (
-              <h1 className="text-center fs-4">no products found</h1>
+            {loading ? (
+              <h1 className="text-center fs-4">loading.......</h1>
             ) : (
               <ProductList data={productsData} />
             )}
