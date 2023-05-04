@@ -13,10 +13,10 @@ import Clock from "Components/Ul/Clock";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { db } from "../firebase/config";
-
+import useGetdata from "../Custom-hook/useGetdata";
 export default function Home() {
-  const [value, loading, error] = useCollection(collection(db, "products"));
-  const [allProducts, setProducts] = useState([]);
+  // const [value, loading, error] = useCollection(collection(db, "products"));
+  const {data:products} = useGetdata("products")
   const [trendingProducts, settrendingProducts] = useState([]);
   const [bestSalesProducts, setbestSalesProducts] = useState([]);
   const [mobileproducts, setmobileproducts] = useState([]);
@@ -24,31 +24,31 @@ export default function Home() {
   const [popularProducts, setpopularProducts] = useState([]);
 
   useEffect(() => {
-    if (value) {
-      const filteredtrendingProducts = value.docs.filter((item) => {
-        return item.data().category === "chair";
+
+      const filteredtrendingProducts = products.filter((item) => {
+        return item.category === "chair";
       });
-      const filteredbestSalesProducts = value.docs.filter((item) => {
-        return item.data().category === "sofa";
+      const filteredbestSalesProducts = products.filter((item) => {
+        return item.category === "sofa";
       });
-      const filteredmobileproducts = value.docs.filter((item) => {
-        return item.data().category === "mobile";
+      const filteredmobileproducts = products.filter((item) => {
+        return item.category === "mobile";
       });
-      const filteredwirelessProducts = value.docs.filter((item) => {
-        return item.data().category === "wireless";
+      const filteredwirelessProducts = products.filter((item) => {
+        return item.category === "wireless";
       });
-      const filteredpopularProducts = value.docs.filter((item) => {
-        return item.data().category === "watch";
+      const filteredpopularProducts = products.filter((item) => {
+        return item.category === "watch";
       });
       settrendingProducts(filteredtrendingProducts);
       setbestSalesProducts(filteredbestSalesProducts);
       setmobileproducts(filteredmobileproducts);
       setwirelessProducts(filteredwirelessProducts);
       setpopularProducts(filteredpopularProducts);
-    }
-  }, [value]);
+    
+  }, [products]);
   const Year = new Date().getFullYear();
-  if (value) {
+
     return (
       <Helmet title={"Home"}>
         <section className="hero__section">
@@ -144,4 +144,4 @@ export default function Home() {
       </Helmet>
     );
   }
-}
+

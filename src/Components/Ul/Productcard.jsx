@@ -12,7 +12,7 @@ export default function Productcard({ item }) {
 
   const addTocart = (item) => {
     dispatch(AddItem(item));
-    toast.success(`${item.data().productName} added succesfully`);
+    toast.success(`${item.productName} added succesfully`);
   };
   return (
     <Col lg="3" md="4">
@@ -20,17 +20,17 @@ export default function Productcard({ item }) {
         <div className="product__img">
           <motion.img
             whileHover={{ scale: 0.9 }}
-            src={item.data().imgUrl}
+            src={item.imgUrl}
             alt="productImg"
           />
         </div>
         <div className="p-2 product__info">
           <h3 className="product__name">
-            <Link to={`/productDetails/${item.data().id}`}>
-              {item.data().productName}
+            <Link to={`/productDetails/${item.id}`}>
+              {item.productName}
             </Link>
           </h3>
-          <span className="text-center d-block">{item.data().category}</span>
+          <span className="text-center d-block">{item.category}</span>
         </div>
 
         <div className="product__card__btn d-flex align-items-center justify-content-between">
@@ -38,7 +38,7 @@ export default function Productcard({ item }) {
           <motion.span
             whileTap={{ scale: 1.1 }}
             onClick={() => {
-              addTocart(item.data());
+              addTocart(item);
             }}
           >
             <i className="ri-add-line"></i>
