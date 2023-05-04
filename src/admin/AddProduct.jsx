@@ -36,7 +36,8 @@ export default function AddProduct() {
             async (downloadURL) => {
               //store user data in firestore
               await addDoc(docRef, {
-                title: enterTitle,
+                id:Date.now(),
+                productName: enterTitle,
                 shortDesc: shortDesc,
                 description: description,
                 price: price,
@@ -159,3 +160,26 @@ export default function AddProduct() {
     </section>
   );
 }
+
+
+// id: "17",
+//     productName: "Timex Easy Reader Watch",
+//     imgUrl: productImg20,
+//     category: "watch",
+//     price: 299,
+//     shortDesc:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iure quas illo voluptates labore tempore!",
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
+//     reviews: [
+//       {
+//         rating: 4.8,
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+//       },
+//       {
+//         rating: 4.9,
+//         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+//       },
+//     ],
+//     avgRating: 4.8,
+//   },
