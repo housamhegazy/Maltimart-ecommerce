@@ -5,6 +5,7 @@ import { collection ,deleteDoc,doc} from "firebase/firestore";
 import { db } from "../firebase/config";
 import { toast } from "react-toastify";
 import Loader from "Components/Loader/Loader";
+import '../styles/admin.users.css'
 export default function Users() {
   const [value, loading, error] = useCollection(collection(db, "users"));
   
@@ -22,7 +23,7 @@ export default function Users() {
           <Col lg="12" className="pt-5">
             {loading && <h1><Loader/></h1>}
             {value ? (
-              <table className="w-100">
+              <table className="w-100 users-table">
                 <thead>
                   <tr>
                     <th>Image</th>
