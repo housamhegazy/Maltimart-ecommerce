@@ -91,7 +91,7 @@ export default function Signup() {
               </Col>
             ) : (
               <Col lg="6" className="m-auto text-center my-5">
-                <h3 className="fw-bold fs-4">create an account</h3>
+                <h3 className="fw-bold fs-4 my-3">create an account</h3>
                 <Form className="auth-form" onSubmit={signup}>
                   <FormGroup className="form-group">
                     <input

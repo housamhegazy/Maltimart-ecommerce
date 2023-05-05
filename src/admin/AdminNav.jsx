@@ -1,7 +1,7 @@
 
 import "../styles/admin.nav.css";
 import { Container, Row } from "reactstrap";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import UserIcon from '../assets/images/user-icon.png'
 const adminNav = [
   {
@@ -30,7 +30,7 @@ export default function AdminNav({ user }) {
           <Container>
             <div className="admin-nav-wrapper-top">
               <div className="logo">
-                <h2>MultiMart</h2>
+                <h2><Link to='/'>MultiMart</Link></h2>
               </div>
               <div className="search-box">
                 <input type="text" placeholder="Search...." />

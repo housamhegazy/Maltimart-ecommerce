@@ -69,7 +69,7 @@ export default function Header({user}) {
             <div className="logo">
               <img src={logo} alt="logo" />
               <div>
-                <h1>MultiMart</h1>
+                <h1><Link to='/'>MultiMart</Link></h1>
                 <p>since 1995</p>
               </div>
             </div>
@@ -108,6 +108,7 @@ export default function Header({user}) {
                   src={user ? user.photoURL : user__icon}
                   alt="user-icon"
                 />
+                
                 {/* login and logout icon */}
                 {openMenu && (
                   <div className="profile-actions">

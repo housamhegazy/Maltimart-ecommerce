@@ -27,7 +27,7 @@
     padding: 0;
     line-height:normal;
 }
-.menu{
+.navigation .menu{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -109,7 +109,7 @@
 .profile-actions{
     position:absolute;
     top:100%;
-    left:0;
+    right:0;
     background-color: #fff;
     border-radius: 10px;
     font-size: 15px;
@@ -134,11 +134,12 @@
         z-index: 999;
         display:none
     }
-    .menu{
+    .navigation .menu{
         position: absolute;
         top:0;
         right: 0;
-        width: 250px;height: 100%;
+        width: 250px;
+        height: 100%;
         background: #fff;
         z-index: 999;
         flex-direction: column;
