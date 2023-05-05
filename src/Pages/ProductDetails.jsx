@@ -1,6 +1,7 @@
 import CommonSection from "Components/Ul/CommonSection";
 import Helmet from "Components/helmet/Helmet";
 // import products from "assets/data/products";
+// @ts-ignore
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
@@ -40,13 +41,19 @@ export default function ProductDetails() {
   const dispatch =useDispatch()
   // const product = products.find((item) => item.id === id);
   const {
+    // @ts-ignore
     imgUrl,
+    // @ts-ignore
     productName,
+    // @ts-ignore
     price,
+    // @ts-ignore
     shortDesc,
+    // @ts-ignore
     description,
     // reviews,
     // avgRating,
+    // @ts-ignore
     category
   } = item;
 
