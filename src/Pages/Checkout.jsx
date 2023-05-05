@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useEffect } from "react";
 import "../styles/checkout.css";
 import Helmet from "Components/helmet/Helmet";
@@ -7,6 +8,7 @@ import { useSelector } from "react-redux";
 import { auth } from "../firebase/config";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from "react-router-dom";
+import Error404 from "./Error404";
 export default function Checkout() {
   // @ts-ignore
   const { totalPrice,totalQuantity } = useSelector((state) => state.cart);
@@ -17,7 +19,13 @@ useEffect(()=>{
   if(!user && !loading){
     navigate("/login")
   } 
-},[user,loading])
+},[user,loading,navigate])
+
+if(error){
+  return(
+    <Error404/>
+  )
+}
   if(user){
     return (
       <Helmet title={"Checkout"}>

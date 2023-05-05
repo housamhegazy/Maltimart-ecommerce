@@ -11,12 +11,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   useEffect(()=>{
     if(user && !loading){
       navigate("/")
     } 
-  },[user,loading])
+  },[user,loading,navigate])
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [loadingg, setLoading] = useState(false);
@@ -38,8 +38,8 @@ export default function Login() {
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
     }
   };
   if(!user){
@@ -75,7 +75,7 @@ export default function Login() {
                       }}
                     />
                   </FormGroup>
-                  <button className="buy__btn login-btn">login</button>
+                  <button className="buy__btn login-btn">{loadingg?"loading":"login"}</button>
                   <p>
                     dont have an account ?{" "}
                     <Link to="/signup">Create an account</Link>

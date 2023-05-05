@@ -12,6 +12,7 @@ export default function useGetdata(collectionName) {
       setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return {data}
 }

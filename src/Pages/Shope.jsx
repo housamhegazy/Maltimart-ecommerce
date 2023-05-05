@@ -5,6 +5,7 @@ import { Col, Container, Row } from "reactstrap";
 import "../styles/shop.css";
 import ProductList from "Components/Ul/ProductList";
 import useGetdata from "Custom-hook/useGetdata";
+import Loader from "Components/Loader/Loader";
 export default function Shope() {
   const { data: products,loading } = useGetdata("products");
 
@@ -100,7 +101,7 @@ export default function Shope() {
         <Container>
           <Row>
             {loading ? (
-              <h1 className="text-center fs-4">loading.......</h1>
+              <Loader/>
             ) : (
               <ProductList data={productsData} />
             )}
