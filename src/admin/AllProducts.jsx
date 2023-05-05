@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { db } from "../firebase/config";

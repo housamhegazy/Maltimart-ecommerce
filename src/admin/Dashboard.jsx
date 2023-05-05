@@ -6,8 +6,8 @@ import { collection } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { Link } from 'react-router-dom';
 export default function Dashboard() {
-  const [value, loading, error] = useCollection(collection(db, "products"));
-  const [value2,loading2, error2] = useCollection(collection(db, "users"));
+  const [value] = useCollection(collection(db, "products"));
+  const [value2 ] = useCollection(collection(db, "users"));
 if(value2){
   console.log(value2);
 }

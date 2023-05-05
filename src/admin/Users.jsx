@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Loader from "Components/Loader/Loader";
 import '../styles/admin.users.css'
 export default function Users() {
-  const [value, loading, error] = useCollection(collection(db, "users"));
+  const [value, loading] = useCollection(collection(db, "users"));
   
   const DeleteItem = async(id)=>{
     await deleteDoc(doc(db, "users", id));

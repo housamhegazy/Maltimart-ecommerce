@@ -17,12 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 export default function Signup() {
   const navigate = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   useEffect(()=>{
     if(user && !loading){
       navigate("/")
     } 
-  },[user,loading])
+  },[user,loading,navigate])
   const [Username, setUsername] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -131,7 +131,7 @@ export default function Signup() {
                       }}
                     />
                   </FormGroup>
-                  <button className="buy__btn login-btn">Signup</button>
+                  <button className="buy__btn login-btn"> {loadingg?"loading":"Signup"}</button>
                   <p>
                     already have an account ? <Link to="/login">Login</Link>
                   </p>

@@ -2,7 +2,6 @@ import React from 'react'
 import './Footer.css'
 import { Container,Row,Col,ListGroup,ListGroupItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import logo from "../../assets/images/eco-logo.png";
 
 export default function Footer() {
   const year = new Date().getFullYear()

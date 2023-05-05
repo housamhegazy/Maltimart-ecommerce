@@ -28,7 +28,6 @@ export default function ProductDetails() {
   useEffect(()=>{
     if(value){
       setItem(value.data())
-      console.log(item)
     }
   },[value])
 
