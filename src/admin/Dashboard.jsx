@@ -30,13 +30,13 @@ if(value2){
             <Col lg='3'>
               <div className="products-box">
                 <h5>total Products</h5>
-                <span>{value && value.docs.length}</span>
+                <span>{value ? value.docs.length:0}</span>
               </div>
             </Col>
             <Col lg='3'>
             <div className="users-box">
                 <h5>total users</h5>
-                <span>{value2 && value2.docs.length}</span>
+                <span>{value2 ? value2.docs.length : 0}</span>
               </div>
             </Col>
           </Row>

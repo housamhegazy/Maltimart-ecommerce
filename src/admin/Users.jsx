@@ -4,11 +4,10 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection ,deleteDoc,doc} from "firebase/firestore";
 import { db } from "../firebase/config";
 import { toast } from "react-toastify";
+import Loader from "Components/Loader/Loader";
 export default function Users() {
   const [value, loading, error] = useCollection(collection(db, "users"));
-  if (value) {
-    console.log(value.docs.map((item) => item.data().Email));
-  }
+  
   const DeleteItem = async(id)=>{
     await deleteDoc(doc(db, "users", id));
     toast.success("Deleted Successfully");
@@ -21,6 +20,7 @@ export default function Users() {
             <h4 className="fw-b text-center">Users</h4>
           </Col>
           <Col lg="12" className="pt-5">
+            {loading && <h1><Loader/></h1>}
             {value ? (
               <table className="w-100">
                 <thead>
